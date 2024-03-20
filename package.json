@@ -1,0 +1,14 @@
+{
+  "name": "clean-exit",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "tsc && vite build"
+  },
+  "devDependencies": {
+    "chrome-types": "^0.1.273",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.6"
+  }
+}

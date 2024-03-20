@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/images/icon48.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CleanExit</title>
+  </head>
+  <body>
+    <div id="app">
+      <a href="https://github.com/Scienciser/CleanExit" target="_blank">
+        <div id="popup-header">
+          <img src="images/icon512.png" class="logo" alt="CleanExit logo" />
+          <h1>CleanExit</h1>
+        </div>
+      </a>
+      <p>Select data to clear on browser reload:</p>
+      <form onsubmit="event.preventDefault()">
+        <input type="checkbox" id="browsing_history" name="browsing_history">
+        <label for="browsing_history">Browsing history</label><br>
+        
+        <input type="checkbox" id="download_history" name="download_history">
+        <label for="download_history">Download history</label><br>
+        
+        <input type="checkbox" id="cookies_site_data" name="cookies_site_data">
+        <label for="cookies_site_data">Cookies and other site data</label><br>
+
+        <input type="checkbox" id="cached_images_files" name="cached_images_files">
+        <label for="cached_images_files">Cached images and files</label><br>
+
+        <input type="checkbox" id="passwords_sign_in_data" name="passwords_sign_in_data">
+        <label for="passwords_sign_in_data">Passwords and other sign-in data</label><br>
+
+        <input type="checkbox" id="autofill_form_data" name="autofill_form_data">
+        <label for="autofill_form_data">Autofill form data</label><br>
+
+        <input type="checkbox" id="hosted_app_data" name="hosted_app_data">
+        <label for="hosted_app_data">Hosted app data</label><br>
+      </form>
+    </div>
+    <script type="module" src="/src/popup.ts"></script>
+  </body>
+</html>
