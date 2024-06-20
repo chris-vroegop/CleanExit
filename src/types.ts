@@ -11,7 +11,8 @@ export class CleanExitSettings {
   ) {}
 }
 
-export function isValidSettings(obj: any): obj is CleanExitSettings {
+
+export function createCleanExitSettings(obj: any): CleanExitSettings | null {
   const requiredFields = [
     "browsing_history",
     "download_history",
@@ -22,11 +23,21 @@ export function isValidSettings(obj: any): obj is CleanExitSettings {
     "site_settings",
     "hosted_app_data",
   ];
-  for (const field of requiredFields) {
-    if (!(field in obj)) {
-      console.log(`CleanExitSettings is missing required field: ${field}`);
-      return false;
-    }
+
+  const missingFields = requiredFields.filter(field => !(field in obj));
+  if (missingFields.length > 0) {
+    console.log(`CleanExitSettings is missing required fields: ${missingFields.join(", ")}`);
+    return null;
   }
-  return true;
+
+  return new CleanExitSettings(
+    Boolean(obj.browsing_history),
+    Boolean(obj.download_history),
+    Boolean(obj.cookies_site_data),
+    Boolean(obj.cached_images_files),
+    Boolean(obj.passwords_sign_in_data),
+    Boolean(obj.autofill_form_data),
+    Boolean(obj.site_settings),
+    Boolean(obj.hosted_app_data)
+  );
 }

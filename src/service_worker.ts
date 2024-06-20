@@ -1,4 +1,4 @@
-import { CleanExitSettings, isValidSettings } from "./types";
+import { CleanExitSettings, createCleanExitSettings } from "./types";
 
 async function main() {
   console.log("CleanExit has started.");
@@ -11,13 +11,9 @@ async function main() {
     return;
   }
 
-  let settings: CleanExitSettings;
-  if (isValidSettings(recv)) {
-    settings = recv;
-  } else {
-    console.log(
-      "CleanExit settings are missing or corrupted - setting to default."
-    );
+  let settings = createCleanExitSettings(recv);
+  if (settings == null) {
+    console.log("CleanExit settings are missing or corrupted - setting to default.");
     settings = new CleanExitSettings();
     try {
       await chrome.storage.sync.set(settings);

@@ -1,10 +1,10 @@
 import "./style.css";
-import { CleanExitSettings, isValidSettings } from "./types";
+import { createCleanExitSettings } from "./types";
 
 async function main() {
   let recv;
   try {
-    recv = (await chrome.storage.sync.get()) as CleanExitSettings;
+    recv = await chrome.storage.sync.get();
   } catch (e) {
     const errMsg = `Failed to retrieve data from Chrome storage: ${e}`;
     console.error(errMsg);
@@ -12,10 +12,8 @@ async function main() {
     return;
   }
 
-  let settings: CleanExitSettings;
-  if (isValidSettings(recv)) {
-    settings = recv;
-  } else {
+  let settings = createCleanExitSettings(recv);
+  if (settings == null) {
     const errMsg = "CleanExit settings are missing or corrupted.";
     console.error(errMsg);
     document.getElementById("app")!.innerHTML = `<p>${errMsg}</p>`;
@@ -52,9 +50,7 @@ async function main() {
     );
   }
 
-  const cif = document.getElementById(
-    "cached_images_files"
-  ) as HTMLInputElement;
+  const cif = document.getElementById("cached_images_files") as HTMLInputElement;
   if (cif) {
     cif.checked = settings.cached_images_files;
     cif.addEventListener("change", (_ev) =>
@@ -64,9 +60,7 @@ async function main() {
     );
   }
 
-  const ps = document.getElementById(
-    "passwords_sign_in_data"
-  ) as HTMLInputElement;
+  const ps = document.getElementById("passwords_sign_in_data") as HTMLInputElement;
   if (ps) {
     ps.checked = settings.passwords_sign_in_data;
     ps.addEventListener("change", (_ev) =>
