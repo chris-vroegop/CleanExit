@@ -19,9 +19,9 @@ It leverages the [browsingData API](https://developer.chrome.com/docs/extensions
 
 A simple UI is included to allow the user to select what data to clear on reload.
 
-Currently only Chrome is supported as Firefox Manifest V3 background service workers are [still disabled](https://github.com/mozilla/web-ext/issues/2532) by default.
+Currently only Chromium browsers are supported as Firefox [does not support](https://bugzilla.mozilla.org/show_bug.cgi?id=1360870) service worker modules for extensions. I have not tested on Safari.
 
-*Available from the Chrome Web Store <a href="https://chromewebstore.google.com/detail/cleanexit/chjjljigikgecfimljpjkbmdkiiimaop">here</a>.*
+*Available from the <a href="https://chromewebstore.google.com/detail/cleanexit/chjjljigikgecfimljpjkbmdkiiimaop">Chrome Web Store</a> and <a href="https://microsoftedge.microsoft.com/addons/detail/cleanexit/ioeaibgbcbcfggpooiphefddmfefplfk">Microsoft Edge Add-ons</a>.*
 
 
 ## Local development
